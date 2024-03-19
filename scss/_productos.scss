@@ -1,0 +1,110 @@
+/* estilo de contenedor titulo */
+
+header{
+    width: 100%;
+}
+
+.hedProd{
+    background-color: $color-moradoClaro;
+    display: flex;
+    justify-content: center;
+}
+
+
+.contTitulo{
+    margin-top: 2%;
+    margin-bottom: 1%;
+    justify-content: center;
+}
+
+.tituloProds{
+    color: white;
+    font-family: $quicksand;
+    font-weight: 700;
+    font-size: $subtitle1;
+    text-align: center;
+}
+
+.textoProds{
+    font-family: $poppins;
+    color: white;
+    text-align: center;
+    font-size: $text-min;
+}
+
+.tituloCarrito{
+    font-family: $poppins;
+    text-align: center;
+    font-size: $text-min;
+    color: $color-verdeOscuro;
+}
+
+.colorMain{
+    margin: 1%;
+    display: flex;
+}
+
+.contenedorCurso{
+    margin: 3%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.cadaCard{
+    margin: 1%;
+    border-color: $color-fucsia1;
+}
+
+.contBotonCar{
+    display: flex;
+    justify-content: center;
+}
+
+.botonCarrito{
+    text-align: center;
+    color: white;
+    background-color: $rojo-claro;
+    border-radius: 3px;
+    border: 0px;
+    font-family: $poppins;
+    font-size: 1.3em;
+}
+
+/* clases del texto de cada producto */
+
+.nombreCursos{
+    text-align: center;
+    color: $color-verdeOscuro;
+    font-family: $quicksand;
+    font-size: $text-min;
+    font-weight: 600;
+}
+
+.textoDescripcion{
+    font-family: $raleway;
+    font-size: 1.1em;
+    text-align: justify;
+}
+
+.contPrecio{
+    margin: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* clases del boton de cada producto */
+
+.contBotonProds{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2%;
+}
+
+.botonProductos{
+    color: white;
+    background-color: $rojo-med;
+    border-color: $rojo-med;
+}

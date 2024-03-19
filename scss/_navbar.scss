@@ -1,2 +1,53 @@
-@import "_colorLetters";
-@import "_navbar"
+nav{
+    background-color: $color-verdeClaro;
+    position: fixed;
+    width: 100%;
+
+}
+
+a{
+    color: black;
+}
+
+.contenedorLinks{
+    padding-top: 1.4%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.listaLinks{
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+    padding: 0.8%;
+    flex-wrap: wrap;
+}
+
+.linkPor1{
+    padding-left: 0.8%;
+}
+
+.textoLink{
+    list-style: none;
+    text-decoration: none;
+    font-family: $quicksand;
+    font-size: 1.4em;
+    
+}
+
+.textoLink :hover{
+    color: aqua;
+    font-size: 1.5em;
+}
+
+.containesDivs{
+    padding-bottom: 2%;
+}
+
+.logoNav{
+    margin-top: 1%;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1%;
+}

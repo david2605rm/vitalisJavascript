@@ -1,113 +1,191 @@
+
+//constantes
 const cursos = [
-    {id: 1, nombre:'crisis digestiva', tema: 'salir de crisis digestiva', modulos: 3, profesora: 'Maria Ramirez', valor: 27},
-    {id: 2, nombre:'Reset desinflamatorio', tema: 'Detox de tu cuerpo', modulos: 7, profesora: 'Maria Ramirez', valor: 117},
-    {id: 3, nombre:'Consulta 1 a 1', tema: 'consulta personalizada para diagnostico', modulos: 5, profesora: 'Maria Ramirez', valor: 97},
+    {   id: 1, 
+        nombre: "crisis digestiva", 
+        tema: "salir de crisis digestiva", 
+        modulos: 3,
+        img: "../imagenes/imagenes-cursos/port-crisis.svg",
+        profesora: "Maria Ramirez",
+        valor: 27
+    },
+    {   
+        id: 2, 
+        nombre: "Reset desinflamatorio", 
+        tema: "Detox de tu cuerpo", 
+        modulos: 7,
+        img: "../imagenes/imagenes-cursos/port-reset.svg",
+        profesora: "Maria Ramirez",
+        valor: 117
+    },
+    {   
+        id: 3, 
+        nombre: "Consulta 1 a 1", 
+        tema: "consulta personalizada para diagnostico", 
+        modulos: 5,
+        img: "../imagenes/imagenes-cursos/port-consulta.svg",
+        profesora: "Maria Ramirez",
+        valor: 97
+    },
+    {   
+        id: 4, 
+        nombre: "Peso estancado", 
+        tema: "Salir del peso estancado", 
+        modulos: 6,
+        img: "../imagenes/imagenes-cursos/port-peso.svg",
+        profesora: "Maria Ramirez",
+        valor: 77
+    },
+    {   
+        id: 5, 
+        nombre: "Revive tu microbiota", 
+        tema: "Reconstruir tu microbiota", 
+        modulos: 4,
+        img: "../imagenes/imagenes-cursos/port-microbiota.svg",
+        profesora: "Maria Ramirez",
+        valor: 57
+    },
+    {   
+        id: 6, 
+        nombre: "Programa vip", 
+        tema: "Principales cursos de Vitalis Academy", 
+        modulos: 16,
+        img: "../imagenes/imagenes-cursos/port-vip.svg",
+        profesora: "Maria Ramirez",
+        valor: 227
+    }
 ]
 
-const listaInteresados = []
+const contenedorProductos = document.getElementById('contenedorCursos')
 
-function saludoNom(nombre){
-    return nombre + " Buen día"
-};
+const contadorProductos = document.getElementById('contadorProd')
 
-function Interesado(nombre, curso, numCuotas, medPago){
-    this.nombre = nombre
-    this.curso = curso;
-    this.numCuotas = numCuotas;
-    this.medPago = medPago;
+const carritoContenedor = document.getElementById('contenedorCarrito')
 
-    this.mostrarInteresados = function(){
-        return(
-            "Nombre interesado: " + this.nombre + "\n"+
-            "Curso de interes: " + this.curso + "\n" +
-            "Numero de cuotas: " + this.numCuotas + "\n" + 
-            "Medio de pago preferido: " + this.medPago + "\n" 
-        )
+//variables
+
+
+let bolsaCompras = []
+
+let baseCursos = ['../cursos.json']
+
+//funciones
+
+    //guardar en local storage
+
+    function guardarEnLocal(){
+        localStorage.setItem('bolsaCompras', JSON.stringify(bolsaCompras));
     }
-}
+
+    //traer local 
+
+    function cargarLocal(){
+        //si el carrito no esta cargado en storage
+        if(localStorage.getItem("bolsaCompras") !== null){
+                //y si lo esta
+            bolsaCompras = JSON.parse(localStorage.getItem("bolsaCompras"));
+        }
+    }
+
+    //funcion buscadora
+
+    function filtrarCurso(arr, filtro){
+        const filtrado = arr.filter((el) =>{
+            return el.nombre.includes(filtro);
+        });
+        return filtrado;
+    }
+
+    // funcion para añadir al carrito
+
+    const añadirCarrito = (prodId) => {
+
+        /* parte para subir al carrito */
+
+        const subirCarrito = () =>{
+            carritoContenedor.innerHTML = ""
+                bolsaCompras.forEach((prod) => {
+                    const divCarrito = document.createElement('div')
+                    divCarrito.className = ('contenedorBolsa')
+                    divCarrito.innerHTML = `
+                    <div class="card cadaCard" style="width: 18rem;">
+                        <img src="${elem.img}" class="card-img-top" alt="${elem.nombre}">
+                        <div class="card-body">
+                            <h3 class="nombreCursos">${elem.nombre}</h3>
+                            <p class="card-text textoDescripcion">${elem.tema}</p>
+                            <div class="contPrecio">
+                                <p class="card-text">Precio: $${elem.valor}</p>
+                                <p class="card-text">Modulos: ${elem.modulos}</p>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    `
+                    carritoContenedor.appendChild(divCarrito)
+                })
+            contadorProductos.innerText = bolsaCompras.length
+        }
 
 
 
+        /* parte para validar si esta en el carrito */
+        const agregado = bolsaCompras.some (prod => prod.id === prodId)
 
-let nombre = prompt("Cual es tu nombre");
+            if (agregado){
+                bolsaCompras.forEach(prod => {
+                    if (prod.id === prodId) {
+                        prod.cantidad++;
+                    }
+                });
+            } else {
+                const item = cursos.find(prod => prod.id === prodId);
+                bolsaCompras.push(item);
+                console.log(bolsaCompras)
+            }
+            guardarEnLocal();
+            subirCarrito();
 
-while (nombre === '') {
-    alert("Por favor, Ingrese los Datos solicitados");
-    nombre = prompt("Cual es tu nombre");
-}
+    }
 
-alert(saludoNom(nombre))
 
-let bienvenidaTienda = alert("Bienvenido a Vitalis Academy " + nombre + " a continuacion podras ver nuestro portafolio de cursos");
+    // funcion de crear productos en el html
 
-let productos; 
+    function pintarHtml(arr){
+        contenedorProductos.innerHTML = "";
 
-do {
-    productos = prompt("Vitalis Academy te ofrece estas alternativas para sanar tu cuerpo: \n 1) Reset Desinflamatorio \n 2) Consulta Personalizada \n 3) Crisis Digestiva \n 4) No estoy listo/a en este momento \n 5) No quiero informacion/ya finalice ");
-    
-    switch (productos) {
-        case "1": 
-            alert("Has seleccionado el Reset desinflamatorio");
-            let nuevoInteresado = new Interesado(
-                    nombre,
-                    prompt("Confirmanos en que curso estas interesado"),
-                    parseInt(prompt("Cuantas cuotas estan bien para ti?")),
-                    prompt("que medio de pago deseas aplicar"),
-                    );
-                    listaInteresados.push(nuevoInteresado);
-                    alert(nuevoInteresado.mostrarInteresados())
-            break;
+        let html = "";
+        for (const elem of arr){
+            html = `
+                <div class="card cadaCard" style="width: 18rem;">
+                    <img src="${elem.img}" class="card-img-top" alt="${elem.nombre}">
+                    <div class="card-body">
+                        <h3 class="nombreCursos">${elem.nombre}</h3>
+                        <p class="card-text textoDescripcion">${elem.tema}</p>
+                        <div class="contPrecio">
+                            <p class="card-text">Precio: $${elem.valor}</p>
+                            <p class="card-text">Modulos: ${elem.modulos}</p>
+                        </div>
+                        
+                    </div>
+                    <div class="contBotonProds">
+                        <button class="btn btn-primary botonProductos" id="agregar${elem.id}" type="submit">Añadir</button>
+                    </div>
+                </div>
+            `;
+        contenedorProductos.innerHTML = contenedorProductos.innerHTML + html
 
-        case "2": 
-            alert("Has seleccionado la consulta personalizada");
-            let nuevoInteresado2 = new Interesado(
-                nombre,
-                prompt("Confirmanos en que curso estas interesado"),
-                parseInt(prompt("Cuantas cuotas estan bien para ti?")),
-                prompt("que medio de pago deseas aplicar"),
-                );
-                listaInteresados.push(nuevoInteresado2);
-                alert(nuevoInteresado2.mostrarInteresados())    
-            break;
+            const boton = document.getElementById(`agregar${elem.id}`)
+            boton.addEventListener('click', () => {
+                añadirCarrito(elem.id)
+            })
+        }
+    }
 
-        case "3": 
-            alert("Has seleccionado Crisis Digestiva");
-            let nuevoInteresado3 = new Interesado(
-                nombre,
-                prompt("Confirmanos en que curso estas interesado"),
-                parseInt(prompt("Cuantas cuotas estan bien para ti?")),
-                prompt("que medio de pago deseas aplicar"),
-                );
-                listaInteresados.push(nuevoInteresado3);
-                alert(nuevoInteresado3.mostrarInteresados())    
-            break;
+//agregar productos al html
 
-        case "4": alert("Entiendo, Quieres que te contactemos despues?");
-                let contacto = prompt(" \n Si \n No")
-                if (contacto == "Si") {
-                    alert("Espera nuestro mensaje")
-                } else {
-                    alert("Te esperamos con nosotros pronto, un abrazo")
-                }
-            break;
+pintarHtml(cursos);
 
-        default: 
-            alert("Selecciona una opcion correcta")
-            break;
-    } 
-}while (productos != "5")  
+cargarLocal();
 
-alert('Gracias ' + nombre + ' por creer en vitalis academy')
 
-for (const elemento of listaInteresados){
-    console.log("Medios de pago mas solicitados: " + elemento.medPago)
-}
 
-// esto son ejemplos de metodos que me gustaria usar cuando pinte en el html, este con una lupa en el nav
-let buscarCurso = prompt("Que curso te interesa mas")
-
-const buscar = cursos.find((curso) =>{
-    return curso.nombre
-})
-
-console.log(listaInteresados);

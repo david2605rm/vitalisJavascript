@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/visual.css">
+    <link rel="shortcut icon" href="./imagenes/bellota-vit.svg" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../imagenes/bellota-vit.svg" class="logoNav" alt="Logo vitalis academy" >
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link textoLink"  href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link textoLink" href="./productos.html">Academia</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link textoLink" href="#">Eventos</a>
+                </li>
+
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle textoLink" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Contacta
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Preguntas frecuentes</a></li>
+                        <li><a class="dropdown-item" href="#">Quienes somos?</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Contacto</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- donde se pondran los productos en el carrito -->
+    <main id="contenedorCarrito">
+
+    </main>
+
+    <footer>
+        <div class="contenedorFo">
+            <p class="textoFo">Política de privacidad. Valoramos tu privacidad y prometemos nunca enviarte SPAM. Tu información está 100% segura y nunca compartiremos tus datos con nadie. Al registrarte a este reto, también recibirás más información sobre nuestra filosofía, programas y ofertas.</p>
+            <P class="textoFo">Vitalis Academy | Copyright ©2021 | Todos los derechos reservados</P>
+        </div>
+    </footer>
+
+    <script src="../logica/logic.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>
