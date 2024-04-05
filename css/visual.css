@@ -133,6 +133,32 @@ header {
   background-color: #ff5756;
   border-color: #ff5756; }
 
+.finalCarrito {
+  margin: 1%;
+  display: flex;
+  justify-content: flex-start; }
+
+.contBotones {
+  margin: 1%; }
+
+.botonVolver {
+  border-color: white;
+  border-radius: 5%;
+  border: 0ch;
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  font-size: 1.2em;
+  background-color: #648f84; }
+
+.botonPagar {
+  border-color: white;
+  border-radius: 5%;
+  border: 0ch;
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  font-size: 1.2em;
+  background-color: #f97463; }
+
 footer {
   background-color: #474747;
   padding-top: 1%; }

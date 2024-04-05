@@ -1,0 +1,29 @@
+.finalCarrito{
+    margin: 1%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.contBotones{
+    margin: 1%;
+}
+
+.botonVolver{
+    border-color: white;
+    border-radius: 5%;
+    border: 0ch;
+    font-family: $quicksand;
+    color: white;
+    font-size: 1.2em;
+    background-color: $color-verdeMed2;
+}
+
+.botonPagar{
+    border-color: white;
+    border-radius: 5%;
+    border: 0ch;
+    font-family: $quicksand;
+    color: white;
+    font-size: 1.2em;
+    background-color: $rojo-claro;
+}

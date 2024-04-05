@@ -4,7 +4,7 @@
         "nombre": "crisis digestiva", 
         "tema": "salir de crisis digestiva", 
         "modulos": 3,
-        "img": "./imagenes/imagenes-cursos/port-crisis.svg",
+        "img": "../imagenes/imagenes-cursos/port-crisis.svg",
         "profesora": "Maria Ramirez",
         "valor": 27
     },
@@ -13,7 +13,7 @@
         "nombre": "Reset desinflamatorio", 
         "tema": "Detox de tu cuerpo", 
         "modulos": 7,
-        "img": "./imagenes/imagenes-cursos/port-reset.svg",
+        "img": "../imagenes/imagenes-cursos/port-reset.svg",
         "profesora": "Maria Ramirez",
         "valor": 117
     },
@@ -22,7 +22,7 @@
         "nombre": "Consulta 1 a 1", 
         "tema": "consulta personalizada para diagnostico", 
         "modulos": 5,
-        "img": "./imagenes/imagenes-cursos/port-consulta.svg",
+        "img": "../imagenes/imagenes-cursos/port-consulta.svg",
         "profesora": "Maria Ramirez",
         "valor": 97
     },
@@ -31,7 +31,7 @@
         "nombre": "Peso estancado", 
         "tema": "Salir del peso estancado", 
         "modulos": 6,
-        "img": "./imagenes/imagenes-cursos/port-peso.svg",
+        "img": "../imagenes/imagenes-cursos/port-peso.svg",
         "profesora": "Maria Ramirez",
         "valor": 77
     },
@@ -40,7 +40,7 @@
         "nombre": "Revive tu microbiota", 
         "tema": "Reconstruir tu microbiota", 
         "modulos": 4,
-        "img": "./imagenes/imagenes-cursos/port-microbiota.svg",
+        "img": "../imagenes/imagenes-cursos/port-microbiota.svg",
         "profesora": "Maria Ramirez",
         "valor": 57
     },
@@ -49,7 +49,7 @@
         "nombre": "Programa vip", 
         "tema": "Principales cursos de Vitalis Academy", 
         "modulos": 16,
-        "img": "./imagenes/imagenes-cursos/port-vip.svg",
+        "img": "../imagenes/imagenes-cursos/port-vip.svg",
         "profesora": "Maria Ramirez",
         "valor": 227
     }

@@ -1,72 +1,16 @@
-
 //constantes
-const cursos = [
-    {   id: 1, 
-        nombre: "crisis digestiva", 
-        tema: "salir de crisis digestiva", 
-        modulos: 3,
-        img: "../imagenes/imagenes-cursos/port-crisis.svg",
-        profesora: "Maria Ramirez",
-        valor: 27
-    },
-    {   
-        id: 2, 
-        nombre: "Reset desinflamatorio", 
-        tema: "Detox de tu cuerpo", 
-        modulos: 7,
-        img: "../imagenes/imagenes-cursos/port-reset.svg",
-        profesora: "Maria Ramirez",
-        valor: 117
-    },
-    {   
-        id: 3, 
-        nombre: "Consulta 1 a 1", 
-        tema: "consulta personalizada para diagnostico", 
-        modulos: 5,
-        img: "../imagenes/imagenes-cursos/port-consulta.svg",
-        profesora: "Maria Ramirez",
-        valor: 97
-    },
-    {   
-        id: 4, 
-        nombre: "Peso estancado", 
-        tema: "Salir del peso estancado", 
-        modulos: 6,
-        img: "../imagenes/imagenes-cursos/port-peso.svg",
-        profesora: "Maria Ramirez",
-        valor: 77
-    },
-    {   
-        id: 5, 
-        nombre: "Revive tu microbiota", 
-        tema: "Reconstruir tu microbiota", 
-        modulos: 4,
-        img: "../imagenes/imagenes-cursos/port-microbiota.svg",
-        profesora: "Maria Ramirez",
-        valor: 57
-    },
-    {   
-        id: 6, 
-        nombre: "Programa vip", 
-        tema: "Principales cursos de Vitalis Academy", 
-        modulos: 16,
-        img: "../imagenes/imagenes-cursos/port-vip.svg",
-        profesora: "Maria Ramirez",
-        valor: 227
-    }
-]
 
 const contenedorProductos = document.getElementById('contenedorCursos')
-
 const contadorProductos = document.getElementById('contadorProd')
-
 const carritoContenedor = document.getElementById('contenedorCarrito')
+
+//traer form de busqueda
+const formBusqueda = document.getElementById('formBusqueda');
+const inputBusqueda = document.getElementById('inputBusqueda');
 
 //variables
 
-
 let bolsaCompras = []
-
 let baseCursos = ['../cursos.json']
 
 //funciones
@@ -95,97 +39,115 @@ let baseCursos = ['../cursos.json']
         });
         return filtrado;
     }
+    //funcion para pintar los articulos html
 
-    // funcion para añadir al carrito
+    fetch(baseCursos)
+    .then((resp) => resp.json())
+    .then((cursos)=>{
 
-    const añadirCarrito = (prodId) => {
+        cursos.forEach((curso) => {
+            const contcurso = document.createElement('div')
+            contcurso.classList.add('contenedorCurso')
+            contcurso.innerHTML = `
+            <div class="card cadaCard" style="width: 18rem;">
+                <img src="${curso.img}" class="card-img-top" alt="${curso.nombre}">
+                <div class="card-body">
+                    <h3 class="nombreCursos">${curso.nombre}</h3>
+                    <p class="card-text textoDescripcion">${curso.tema}</p>
+                    <div class="contPrecio">
+                        <p class="card-text">Precio: $${curso.valor}</p>
+                        <p class="card-text">Modulos: ${curso.modulos}</p>
+                    </div>
+                    
+                </div>
+                <div class="contBotonProds">
+                    <button class="btn btn-primary botonProductos" id="agregar${curso.id}" type="submit">Añadir</button>
+                </div>
+            </div>
+        `
 
-        /* parte para subir al carrito */
+            contenedorProductos.appendChild(contcurso)
 
-        const subirCarrito = () =>{
+            const botonCart = document.getElementById(`agregar${curso.id}`)
+            botonCart.addEventListener('click', () => {
+
+                añadirCarrito(curso.id)
+                
+            });
+        });
+    });
+    
+    cargarLocal();
+
+    // Función para añadir al carrito
+    
+const añadirCarrito = (prodId) => {
+    const agregado = bolsaCompras.some (prod => prod.id === prodId)
+
+        fetch(baseCursos)
+        .then((resp) => resp.json())
+        .then((cursos)=>{
+
+            if (agregado){
+                const prod = bolsaCompras.map (prod => {
+                    if(prod.id === prodId){
+                        prod.cantidad++
+                    }
+                })
+            }else{
+                const items = cursos.find((prod) => prod.id === prodId)
+                bolsaCompras.push(items)
+                console.log(bolsaCompras)
+            }
+            guardarEnLocal()
+            subirCarrito()
+        })
+
+        //Elimina los productos del carrito
+
+        const quitarCurso = (prodId) => {
+            const items = bolsaCompras.find((prod) => prod.id === prodId)
+            const indice = bolsaCompras.indexOf(items)
+            bolsaCompras.splice(indice, 1)
+
+            subirCarrito()    
+        }
+
+    const subirCarrito = () => {
             carritoContenedor.innerHTML = ""
                 bolsaCompras.forEach((prod) => {
                     const divCarrito = document.createElement('div')
                     divCarrito.className = ('contenedorBolsa')
                     divCarrito.innerHTML = `
                     <div class="card cadaCard" style="width: 18rem;">
-                        <img src="${elem.img}" class="card-img-top" alt="${elem.nombre}">
+                        <img src="${prod.img}" class="card-img-top" alt="${prod.nombre}">
                         <div class="card-body">
-                            <h3 class="nombreCursos">${elem.nombre}</h3>
-                            <p class="card-text textoDescripcion">${elem.tema}</p>
+                            <h3 class="nombreCursos">${prod.nombre}</h3>
+                            <p class="card-text textoDescripcion">${prod.tema}</p>
                             <div class="contPrecio">
-                                <p class="card-text">Precio: $${elem.valor}</p>
-                                <p class="card-text">Modulos: ${elem.modulos}</p>
+                                <p class="card-text">Precio: $${prod.valor}</p>
+                                <p class="card-text">Modulos: ${prod.modulos}</p>
                             </div>
-                        
+                            <div class="contPrecio">
+                                <button onClick = "quitarCurso(${prod.id})" class="btn btn-primary botonProductos" id="agregar${prod.id}" type="submit">Eliminar</button>
+                            </div>
                         </div>
                     </div>
                     `
-                    carritoContenedor.appendChild(divCarrito)
-                })
-            contadorProductos.innerText = bolsaCompras.length
-        }
-
-
-
-        /* parte para validar si esta en el carrito */
-        const agregado = bolsaCompras.some (prod => prod.id === prodId)
-
-            if (agregado){
-                bolsaCompras.forEach(prod => {
-                    if (prod.id === prodId) {
-                        prod.cantidad++;
-                    }
-                });
-            } else {
-                const item = cursos.find(prod => prod.id === prodId);
-                bolsaCompras.push(item);
-                console.log(bolsaCompras)
-            }
-            guardarEnLocal();
-            subirCarrito();
-
-    }
-
-
-    // funcion de crear productos en el html
-
-    function pintarHtml(arr){
-        contenedorProductos.innerHTML = "";
-
-        let html = "";
-        for (const elem of arr){
-            html = `
-                <div class="card cadaCard" style="width: 18rem;">
-                    <img src="${elem.img}" class="card-img-top" alt="${elem.nombre}">
-                    <div class="card-body">
-                        <h3 class="nombreCursos">${elem.nombre}</h3>
-                        <p class="card-text textoDescripcion">${elem.tema}</p>
-                        <div class="contPrecio">
-                            <p class="card-text">Precio: $${elem.valor}</p>
-                            <p class="card-text">Modulos: ${elem.modulos}</p>
-                        </div>
-                        
-                    </div>
-                    <div class="contBotonProds">
-                        <button class="btn btn-primary botonProductos" id="agregar${elem.id}" type="submit">Añadir</button>
-                    </div>
-                </div>
-            `;
-        contenedorProductos.innerHTML = contenedorProductos.innerHTML + html
-
-            const boton = document.getElementById(`agregar${elem.id}`)
-            boton.addEventListener('click', () => {
-                añadirCarrito(elem.id)
+                carritoContenedor.appendChild(divCarrito)
             })
-        }
-    }
+        contadorProductos.innerText = bolsaCompras.length
+        
+    }; 
+};
 
-//agregar productos al html
-
-pintarHtml(cursos);
+    //filtrar productos
+formBusqueda.addEventListener('submit', (event) => {
+        event.preventDefault(); 
+        const terminoBusqueda = inputBusqueda.value; // Obtiene el valor del input de búsqueda
+        const resultadosBusqueda = filtrarCurso(cursos, terminoBusqueda); // Busca los productos que coincidan con el término de búsqueda
+    
+        contenedorProductos(resultadosBusqueda)
+    });
 
 cargarLocal();
-
-
-
