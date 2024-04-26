@@ -27,3 +27,9 @@
     font-size: 1.2em;
     background-color: $rojo-claro;
 }
+
+.productoCarrito{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}

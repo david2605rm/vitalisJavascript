@@ -159,6 +159,11 @@ header {
   font-size: 1.2em;
   background-color: #f97463; }
 
+.productoCarrito {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row; }
+
 footer {
   background-color: #474747;
   padding-top: 1%; }

@@ -3,8 +3,6 @@
 const contenedorProductos = document.getElementById('contenedorCursos')
 const contadorProductos = document.getElementById('contadorProd')
 const carritoContenedor = document.getElementById('contenedorCarrito')
-const vaciarCart = document.getElementById('vaciar-carrito')
-
 
 //traer form de busqueda
 const formBusqueda = document.getElementById('formBusqueda');
@@ -80,14 +78,20 @@ let baseCursos = ['../cursos.json']
             });
         });
     });
-
-    cargarLocal();
     
 
+    //filtrar productos
+formBusqueda.addEventListener('submit', (event) => {
+    event.preventDefault(); 
+    const terminoBusqueda = inputBusqueda.value; // Obtiene el valor del input de búsqueda
+    const resultadosBusqueda = filtrarCurso(cursos, terminoBusqueda); // Busca los productos que coincidan con el término de búsqueda
+
+    contenedorProductos(resultadosBusqueda);
+});
 
     // Función para añadir al carrito
     
-    const añadirCarrito = (prodId) => {
+const añadirCarrito = (prodId) => {
     const agregado = bolsaCompras.some (prod => prod.id === prodId)
 
         fetch(baseCursos)
@@ -95,12 +99,16 @@ let baseCursos = ['../cursos.json']
         .then((cursos)=>{
 
             if (agregado){
+                const prod = bolsaCompras.map (prod => {
+                    if(prod.id === prodId){
+                        prod.cantidad++
+                    }
+                })
+            }else{
                 const items = cursos.find((prod) => prod.id === prodId)
                 bolsaCompras.push(items)
                 console.log(bolsaCompras)
             }
-                
-            
             guardarEnLocal()
             subirCarrito()
         })
@@ -119,23 +127,30 @@ let baseCursos = ['../cursos.json']
             carritoContenedor.innerHTML = ""
                 bolsaCompras.forEach((prod) => {
                     const divCarrito = document.createElement('div')
-                    
-                    divCarrito.className = ('productoCarrito')
+                    divCarrito.className = ('contenedorBolsa')
                     divCarrito.innerHTML = `
-                            <p>${prod.nombre}</p>
-                            <p>precio: ${prod.valor}</p>
-                            <p>modulos: ${prod.modulos}</p>
-                            <button onclick="quitarProducto(${prod.id})" class="botonProducto">quitar</button>
-                `
+                    <div class="card cadaCard" style="width: 18rem;">
+                        <img src="${prod.img}" class="card-img-top" alt="${prod.nombre}">
+                        <div class="card-body">
+                            <h3 class="nombreCursos">${prod.nombre}</h3>
+                            <p class="card-text textoDescripcion">${prod.tema}</p>
+                            <div class="contPrecio">
+                                <p class="card-text">Precio: $${prod.valor}</p>
+                                <p class="card-text">Modulos: ${prod.modulos}</p>
+                            </div>
+                            <div class="contPrecio">
+                                <button onClick = "quitarCurso(${prod.id})" class="btn btn-primary botonProductos" id="agregar${prod.id}" type="submit">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                    `
                 carritoContenedor.appendChild(divCarrito)
             })
         contadorProductos.innerText = bolsaCompras.length
         
     }; 
-
-    vaciarCart.addEventListener('click', () => {
-        bolsaCompras.length = 0
-        subirCarrito()
-    })
 };
 
+
+
+cargarLocal();
