@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+nav {
+  background-color: #aeb5a0;
+  position: fixed;
+  width: 100%; }
+
+a {
+  color: black; }
+
+.contenedorLinks {
+  padding-top: 1.4%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+
+.listaLinks {
+  display: flex;
+  list-style: none;
+  text-decoration: none;
+  padding: 0.8%;
+  flex-wrap: wrap; }
+
+.linkPor1 {
+  padding-left: 0.8%; }
+
+.textoLink {
+  list-style: none;
+  text-decoration: none;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.4em; }
+
+.textoLink :hover {
+  color: aqua;
+  font-size: 1.5em; }
+
+.containesDivs {
+  padding-bottom: 2%; }
+
+.logoNav {
+  margin-top: 1%;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 1%; }
+
+/* estilo de contenedor titulo */
+header {
+  width: 100%; }
+
+.hedProd {
+  background-color: #cbb3dd;
+  display: flex;
+  justify-content: center; }
+
+.contTitulo {
+  margin-top: 2%;
+  margin-bottom: 1%;
+  justify-content: center; }
+
+.tituloProds {
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  font-size: 3em;
+  text-align: center; }
+
+.textoProds {
+  font-family: "Poppins", sans-serif;
+  color: white;
+  text-align: center;
+  font-size: 1.5em; }
+
+.tituloCarrito {
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  font-size: 1.5em;
+  color: #60726b; }
+
+.colorMain {
+  margin: 1%;
+  display: flex; }
+
+.contenedorCurso {
+  margin: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between; }
+
+.cadaCard {
+  margin: 1%;
+  border-color: #ac4692; }
+
+.contBotonCar {
+  display: flex;
+  justify-content: center; }
+
+.botonCarrito {
+  text-align: center;
+  color: white;
+  background-color: #f97463;
+  border-radius: 3px;
+  border: 0px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.3em; }
+
+/* clases del texto de cada producto */
+.nombreCursos {
+  text-align: center;
+  color: #60726b;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.5em;
+  font-weight: 600; }
+
+.textoDescripcion {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.1em;
+  text-align: justify; }
+
+.contPrecio {
+  margin: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+
+/* clases del boton de cada producto */
+.contBotonProds {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%; }
+
+.botonProductos {
+  color: white;
+  background-color: #ff5756;
+  border-color: #ff5756; }
+
+.finalCarrito {
+  margin: 1%;
+  display: flex;
+  justify-content: flex-start; }
+
+.contBotones {
+  margin: 1%; }
+
+.botonVolver {
+  border-color: white;
+  border-radius: 5%;
+  border: 0ch;
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  font-size: 1.2em;
+  background-color: #648f84; }
+
+.botonPagar {
+  border-color: white;
+  border-radius: 5%;
+  border: 0ch;
+  font-family: "Quicksand", sans-serif;
+  color: white;
+  font-size: 1.2em;
+  background-color: #f97463; }
+
+footer {
+  background-color: #474747;
+  padding-top: 1%; }
+
+.contenedorFo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column; }
+
+.textoFo {
+  font-size: 1em;
+  font-family: "Arial", Helvetica, sans-serif;
+  color: white;
+  text-align: center; }
